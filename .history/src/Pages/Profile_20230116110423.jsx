@@ -1,9 +1,6 @@
-import { getAuth, updateProfile } from 'firebase/auth'
-import { doc, updateDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth'
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router'
-import { toast } from 'react-toastify';
-import { db } from '../firebase';
 
 export default function Profile() {
   const auth = getAuth()
@@ -28,26 +25,6 @@ export default function Profile() {
       [e.target.id]: e.target.value,
     }))
   }
-
-  async function onSubmit (){
-    try{
-      if(auth.currentUser.displayName !== name){
-        // update display name in firebase auth
-        await updateProfile(auth.currentUser, {
-          displayName: name,
-        });
-        // update name in the firestore
-
-        const docRef = doc(db, 'users', auth.currentUser.uid)
-        await updateDoc(docRef, {
-          name,
-        })
-      }
-      toast.success('Profile details updated')
-    }catch(error){
-      toast.error('Could not update the profile details')
-    }
-  }
   return (
     <>
     <section className='max-w-[1270px] mx-auto flex flex-col justify-center items-center'>
@@ -58,10 +35,8 @@ export default function Profile() {
           <input type="text" id='name' value={name} 
           disabled={!changeDetail}
           onChange={onChange}
-          className={`mb-6 w-full px-4
-          py-2 text-xl text-gray-700 bg-white border border-gray-300 
-          rounded transition ease-in-out ${changeDetail &&  'bg-red-300'}`}
-          />
+          className='mb-6 w-full px-4
+          py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out'/>
 
         {/* Email Input */}
         <input type="email" id='email' value={email} disabled className='mb-6 w-full px-4

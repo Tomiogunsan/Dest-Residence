@@ -1,9 +1,7 @@
 import { getAuth, updateProfile } from 'firebase/auth'
-import { doc, updateDoc } from 'firebase/firestore';
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify';
-import { db } from '../firebase';
 
 export default function Profile() {
   const auth = getAuth()
@@ -36,14 +34,8 @@ export default function Profile() {
         await updateProfile(auth.currentUser, {
           displayName: name,
         });
-        // update name in the firestore
-
-        const docRef = doc(db, 'users', auth.currentUser.uid)
-        await updateDoc(docRef, {
-          name,
-        })
+        ?
       }
-      toast.success('Profile details updated')
     }catch(error){
       toast.error('Could not update the profile details')
     }

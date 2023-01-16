@@ -1,5 +1,5 @@
 import { getAuth, updateProfile } from 'firebase/auth'
-import { doc, updateDoc } from 'firebase/firestore';
+import { updateDoc } from 'firebase/firestore';
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify';
