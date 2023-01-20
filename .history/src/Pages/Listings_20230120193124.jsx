@@ -12,7 +12,7 @@ export default function Listings() {
   const params = useParams();
   const [listing, setListing] = useState(null)
   const[loading, setLoading] = useState(true);
-  const[shareLinkCopied, setShareLinkCopied] = useState(false)
+  const[shareLinkCopied, setShareLinkCopied] = useStae
   SwiperCore.use([Autoplay, Navigation, Pagination])
   useEffect(()=>{
     async function fetchListing(){
@@ -48,15 +48,9 @@ export default function Listings() {
       cursor-pointer border-2 border-gray-400 rounded-full w-12 h-12
       flex justify-center items-center ' onClick={() => {
         navigator.clipboard.writeText(window.location.href)
-        setShareLinkCopied(true)
-        setTimeout(()=>{
-          setShareLinkCopied(false)
-        }, 2000)
       }}>
           <FaShare className='text-lg text-slate-500 '/>
       </div>
-      {shareLinkCopied && (<p className='fixed top-[19%] right-[5%]
-      font-semibold border-2 border-gray-400 rounded-md bg-white z-10 p-1'>Linked copied</p>)}
     </main>
   )
 }

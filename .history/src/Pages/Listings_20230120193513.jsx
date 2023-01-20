@@ -55,8 +55,7 @@ export default function Listings() {
       }}>
           <FaShare className='text-lg text-slate-500 '/>
       </div>
-      {shareLinkCopied && (<p className='fixed top-[19%] right-[5%]
-      font-semibold border-2 border-gray-400 rounded-md bg-white z-10 p-1'>Linked copied</p>)}
+      {shareLinkCopied && (<p className='fixed top-[23%] right-[]'>Linked copied</p>)}
     </main>
   )
 }
