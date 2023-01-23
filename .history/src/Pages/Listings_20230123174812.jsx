@@ -9,7 +9,6 @@ import 'swiper/css/bundle';
 import {FaShare, FaBed, FaBath, FaParking, FaChair} from 'react-icons/fa';
 import {MdLocationOn} from 'react-icons/md';
 import {getAuth} from 'firebase/auth';
-import Contact from '../components/Contact';
 
 
 export default function Listings() {
@@ -117,7 +116,7 @@ export default function Listings() {
             '>Contact Landlord</button>
             </div>)}
             {contactLandlord && (
-              <Contact userRef={listing.userRef} listing={listing}/>
+              <
             )}
             
             

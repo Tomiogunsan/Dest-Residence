@@ -9,7 +9,6 @@ import 'swiper/css/bundle';
 import {FaShare, FaBed, FaBath, FaParking, FaChair} from 'react-icons/fa';
 import {MdLocationOn} from 'react-icons/md';
 import {getAuth} from 'firebase/auth';
-import Contact from '../components/Contact';
 
 
 export default function Listings() {
@@ -18,7 +17,7 @@ export default function Listings() {
   const [listing, setListing] = useState(null)
   const[loading, setLoading] = useState(true);
   const[shareLinkCopied, setShareLinkCopied] = useState(false);
-  const[contactLandlord, setContactLandlord] = useState(false)
+  const[contactLandlord, setContactLandlord] = 
   SwiperCore.use([Autoplay, Navigation, Pagination])
   useEffect(()=>{
     async function fetchListing(){
@@ -108,17 +107,13 @@ export default function Listings() {
                 {listing.furnished? 'Furnished': 'Not furnished'}
               </li>
             </ul>
-            {listing.userRef !== auth.currentUser?.uid && !contactLandlord &&
+            {listing.userRef !== auth.currentUser?.uid && 
             (<div className='mt-6'>
-              <button onClick={() => {setContactLandlord(true)}}
-              className='px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase 
+              <button className='px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase 
             rounded-md shadow-md hover:bg-blue-700 hover:shadow-lg 
             focus:bg-blue-700 focus:shadow-lg w-full text-center transition duration-150 ease-in-out 
             '>Contact Landlord</button>
             </div>)}
-            {contactLandlord && (
-              <Contact userRef={listing.userRef} listing={listing}/>
-            )}
             
             
         </div>
