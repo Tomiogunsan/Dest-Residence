@@ -18,7 +18,3 @@ body {
 html::-webkit-scrollbar{
   display: none;
 }
-
-html{
-  scrollbar-width: none;
-}
