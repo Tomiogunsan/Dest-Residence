@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import {collection, getDocs, limit, orderBy, query, where} from 'firebase/firestore'
 import { db } from "../firebase";
-import Spinner from "../components/Spinner";
 
 
 export default function Offers() {
@@ -35,14 +34,7 @@ export default function Offers() {
 
   return (
     <div className='max-w-[1270px] mx-auto px-3'>
-     <h1 className='text-3xl text-center mt-6 font-bold'>Offers</h1>
-     {loading ?  (
-      <Spinner />
-     ) : listings && listings.length > 0 ? (
-      <></>
-     ): (
-      <p>There are no current offers </p>
-     )}
+     <h1 className='t'>Offers</h1>
     </div>
   )
 }

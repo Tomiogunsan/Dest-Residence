@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import {collection, getDocs, limit, orderBy, query, where} from 'firebase/firestore'
 import { db } from "../firebase";
-import Spinner from "../components/Spinner";
 
 
 export default function Offers() {
@@ -18,31 +17,16 @@ export default function Offers() {
            limit(8));
            const querySnap = await getDocs(q)
            const listings = []
-           querySnap.forEach((doc) => {
-            return listings.push({
-              id: doc.id,
-              data: doc.data()
-            })
-           })
-           setListings(listings)
-           setLoading(false)
+           querySnap.forEach((doc) => {} )
       } catch(error){
         toast.error('Could not fetch listing')
       }
     }
     fetchListings()
-  }, []);
-
+  }, [])
   return (
-    <div className='max-w-[1270px] mx-auto px-3'>
-     <h1 className='text-3xl text-center mt-6 font-bold'>Offers</h1>
-     {loading ?  (
-      <Spinner />
-     ) : listings && listings.length > 0 ? (
-      <></>
-     ): (
-      <p>There are no current offers </p>
-     )}
+    <div>
+
     </div>
   )
 }
