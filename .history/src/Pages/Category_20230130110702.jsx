@@ -5,7 +5,7 @@ import { db } from "../firebase";
 import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
 
-export default function Offers() {
+export default function Category() {
   const [listings, setListings] = useState(null)
   const [loading, setLoading] = useState(true)
   const [lastFetchedListing, setLastFetchListing] =  useState(null)
@@ -14,7 +14,7 @@ export default function Offers() {
       try{
         const listingRef = collection(db, 'listings')
         const q = query(listingRef,
-           where('offer', '==', true), 
+           where('ty', '==', true), 
            orderBy('timestamp', 'desc'),
            limit(8));
            const querySnap = await getDocs(q)

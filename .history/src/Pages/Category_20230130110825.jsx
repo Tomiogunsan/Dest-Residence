@@ -4,17 +4,19 @@ import {collection, getDocs, limit, orderBy, query, startAfter, where} from 'fir
 import { db } from "../firebase";
 import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
+import { useParams } from 'react-router';
 
-export default function Offers() {
+export default function Category() {
   const [listings, setListings] = useState(null)
   const [loading, setLoading] = useState(true)
   const [lastFetchedListing, setLastFetchListing] =  useState(null)
+  const params = useParams()
   useEffect(() => {
     async function fetchListings(){
       try{
         const listingRef = collection(db, 'listings')
         const q = query(listingRef,
-           where('offer', '==', true), 
+           where('type', '==', params.categoryName ), 
            orderBy('timestamp', 'desc'),
            limit(8));
            const querySnap = await getDocs(q)

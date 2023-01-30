@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import {collection, getDocs, limit, orderBy, query, startAfter, where} from 'firebase/firestore'
+import {collection, getDocs, limit, orderBy, query, where} from 'firebase/firestore'
 import { db } from "../firebase";
 import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
@@ -36,30 +36,7 @@ export default function Offers() {
     fetchListings()
   }, []);
 
-  async function onFetchMoreListings(){
-     try{
-        const listingRef = collection(db, 'listings')
-        const q = query(listingRef,
-           where('offer', '==', true), 
-           orderBy('timestamp', 'desc'),
-           startAfter(lastFetchedListing),
-           limit(4));
-           const querySnap = await getDocs(q)
-           const lastVisible = querySnap.docs[querySnap.docs.length - 1]
-           setLastFetchListing(lastVisible)
-           const listings = []
-           querySnap.forEach((doc) => {
-            return listings.push({
-              id: doc.id,
-              data: doc.data()
-            })
-           })
-           setListings((prevState) => [...prevState, ...listings])
-           setLoading(false)
-      } catch(error){
-        toast.error('Could not fetch listing')
-      }
-  }
+  
 
   return (
     <div className='max-w-[1270px] mx-auto px-3'>

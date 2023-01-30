@@ -13,7 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
 import CreateListing from "./Pages/CreateListing";
 import EditListing from "./Pages/EditListing";
 import Listings from "./Pages/Listings";
-import Category from "./Pages/Category";
 
 function App() {
   
